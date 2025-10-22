@@ -127,14 +127,18 @@ img { max-width: 100%; height: auto; display: block; }
 /* ========== BREAKPOINTS ========== */
 
 /* Tablet ≥768px */
-@media (min-width: 479px) {
-  .container {
+@media (max-width: 500px) {
+  .principal {
+    background: none;            /* zera imagem, repeat, position, etc. */
+    /* ou, se preferir, só: background-image: none; */
+  }
+    .container {
+    display: block;
+    background-image: none;
     padding: 3rem 2rem;
     gap: 2rem;
   }
- .container__descricao { padding: 0 2rem;}
-}
-  .secundario {
+    .secundario {
     display: grid;
     grid-template-columns: 1fr 1fr;   /* 2 colunas */
     align-items: center;
@@ -144,11 +148,46 @@ img { max-width: 100%; height: auto; display: block; }
   .dispositivos__lista {
     grid-template-columns: repeat(3, 1fr); /* 3 colunas */
   }
-
+}
 
 /* Desktop ≥1024px */
 @media (min-width: 1024px) {
   .container { padding: 4rem 10em; }  /* recupera seu respiro grande */
   .principal { padding-top: 6rem; padding-bottom: 6rem; }
   .container__imagem { margin: 1rem 0 2rem; }
+}
+/* Desktop ≥1024px — caixa à esquerda, conteúdo interno centralizado */
+@media (min-width: 1024px) {
+  /* Mantém o hero sem centralizar tudo por padrão */
+  .principal { 
+    text-align: initial; /* ou left */
+  }
+
+  /* A CAIXA vai para a esquerda do container (sem "auto" nos dois lados) */
+  .principal .container__caixa {
+    margin-left: 0;      /* encosta à esquerda */
+    margin-right: auto;  /* empurra o resto */
+    max-width: 32rem;    /* mantém limite confortável */
+    text-align: center;  /* centraliza os elementos DENTRO da caixa */
+    box;
+  }
+.principal .container__caixa .container__botao {
+    display: block;        /* deixa de ocupar 100% */
+    
+    font-size: 0.95rem;           /* texto menor */
+    border-radius: 6px;
+    margin: 0 0.5rem 0.75rem;
+    
+  }
+  /* Garante a imagem centralizada dentro da caixa */
+  .principal .container__imagem {
+    margin: 1rem auto 1.5rem; /* auto nas laterais centraliza */
+  }
+
+  /* Botões centralizados e sem largura total no desktop */
+  .principal .container__botao {
+    display: block;        /* fica do tamanho do conteúdo */
+    margin: 0 0.5rem 0.75rem;     /* espaçamento entre eles */
+    vertical-align: middle;
+  }
 }
